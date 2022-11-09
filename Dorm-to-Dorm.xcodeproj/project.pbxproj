@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C34A549291C128D00ED848F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34A548291C128D00ED848F /* HomeViewController.swift */; };
+		4C34A54B291C129D00ED848F /* BuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34A54A291C129D00ED848F /* BuyViewController.swift */; };
+		4C34A54F291C12FA00ED848F /* SellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34A54E291C12FA00ED848F /* SellViewController.swift */; };
+		4C34A551291C149300ED848F /* SpecificBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34A550291C149300ED848F /* SpecificBuyViewController.swift */; };
+		4C34A553291C17AD00ED848F /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34A552291C17AC00ED848F /* LogInViewController.swift */; };
 		4CAD04F7291C0DD0009A3BE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD04F6291C0DD0009A3BE7 /* AppDelegate.swift */; };
 		4CAD04F9291C0DD0009A3BE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD04F8291C0DD0009A3BE7 /* SceneDelegate.swift */; };
 		4CAD04FB291C0DD0009A3BE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD04FA291C0DD0009A3BE7 /* ViewController.swift */; };
@@ -16,6 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C34A548291C128D00ED848F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4C34A54A291C129D00ED848F /* BuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewController.swift; sourceTree = "<group>"; };
+		4C34A54E291C12FA00ED848F /* SellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellViewController.swift; sourceTree = "<group>"; };
+		4C34A550291C149300ED848F /* SpecificBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificBuyViewController.swift; sourceTree = "<group>"; };
+		4C34A552291C17AC00ED848F /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		4CAD04F3291C0DD0009A3BE7 /* Dorm-to-Dorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dorm-to-Dorm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAD04F6291C0DD0009A3BE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CAD04F8291C0DD0009A3BE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +69,11 @@
 				4CAD04F6291C0DD0009A3BE7 /* AppDelegate.swift */,
 				4CAD04F8291C0DD0009A3BE7 /* SceneDelegate.swift */,
 				4CAD04FA291C0DD0009A3BE7 /* ViewController.swift */,
+				4C34A548291C128D00ED848F /* HomeViewController.swift */,
+				4C34A552291C17AC00ED848F /* LogInViewController.swift */,
+				4C34A550291C149300ED848F /* SpecificBuyViewController.swift */,
+				4C34A54A291C129D00ED848F /* BuyViewController.swift */,
+				4C34A54E291C12FA00ED848F /* SellViewController.swift */,
 				4CAD04FC291C0DD0009A3BE7 /* Main.storyboard */,
 				4CAD04FF291C0DD2009A3BE7 /* Assets.xcassets */,
 				4CAD0501291C0DD2009A3BE7 /* LaunchScreen.storyboard */,
@@ -139,8 +154,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CAD04FB291C0DD0009A3BE7 /* ViewController.swift in Sources */,
+				4C34A54B291C129D00ED848F /* BuyViewController.swift in Sources */,
+				4C34A54F291C12FA00ED848F /* SellViewController.swift in Sources */,
 				4CAD04F7291C0DD0009A3BE7 /* AppDelegate.swift in Sources */,
+				4C34A553291C17AD00ED848F /* LogInViewController.swift in Sources */,
 				4CAD04F9291C0DD0009A3BE7 /* SceneDelegate.swift in Sources */,
+				4C34A551291C149300ED848F /* SpecificBuyViewController.swift in Sources */,
+				4C34A549291C128D00ED848F /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
