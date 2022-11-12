@@ -9,6 +9,13 @@ import UIKit
 
 class SpecificBuyViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var itemTitle: UILabel!
+    @IBOutlet weak var itemDescription: UILabel!
+    @IBOutlet weak var distance: UILabel!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var contactInfo: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

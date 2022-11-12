@@ -37,18 +37,66 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Specific Buy Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4PK-gi-iPy">
-                                <rect key="frame" x="110" y="126" width="194" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="98" translatesAutoresizingMaskIntoConstraints="NO" id="f4o-ez-HWS">
+                                <rect key="frame" x="41.5" y="335" width="331" height="515"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WGq-gP-6Tz">
+                                        <rect key="frame" x="0.0" y="0.0" width="331" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item Description: Placeholder Placeholder Placeholder Placeholder" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pls-0m-yDR">
+                                        <rect key="frame" x="0.0" y="118.5" width="331" height="41"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a8B-FH-O0K">
+                                        <rect key="frame" x="0.0" y="257.5" width="331" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAx-Oi-AXW">
+                                        <rect key="frame" x="0.0" y="376" width="331" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urm-6h-7nr">
+                                        <rect key="frame" x="0.0" y="494.5" width="331" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gir-U5-iUj">
+                                <rect key="frame" x="73" y="88" width="268" height="225"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FFC-ds-t15"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="gir-U5-iUj" firstAttribute="width" secondItem="kEs-cR-w31" secondAttribute="width" multiplier="0.647343" id="anP-yo-wGn"/>
+                            <constraint firstItem="gir-U5-iUj" firstAttribute="centerX" secondItem="FFC-ds-t15" secondAttribute="centerX" id="bHt-7r-nWQ"/>
+                            <constraint firstItem="gir-U5-iUj" firstAttribute="top" secondItem="FFC-ds-t15" secondAttribute="top" id="cdp-C2-yXG"/>
+                            <constraint firstItem="f4o-ez-HWS" firstAttribute="centerX" secondItem="FFC-ds-t15" secondAttribute="centerX" id="iRh-gT-zmj"/>
+                            <constraint firstItem="FFC-ds-t15" firstAttribute="bottom" secondItem="f4o-ez-HWS" secondAttribute="bottom" constant="12" id="z62-g9-Ld1"/>
+                            <constraint firstItem="gir-U5-iUj" firstAttribute="height" secondItem="kEs-cR-w31" secondAttribute="height" multiplier="0.251116" id="zBm-IA-KWQ"/>
+                            <constraint firstItem="f4o-ez-HWS" firstAttribute="width" secondItem="kEs-cR-w31" secondAttribute="width" multiplier="0.8" id="zi6-aP-EnB"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="UH0-Ji-dEM"/>
+                    <connections>
+                        <outlet property="contactInfo" destination="urm-6h-7nr" id="j3Q-7S-bMK"/>
+                        <outlet property="date" destination="EAx-Oi-AXW" id="tgb-ZG-Eyk"/>
+                        <outlet property="distance" destination="a8B-FH-O0K" id="u1c-br-E1Z"/>
+                        <outlet property="imageView" destination="gir-U5-iUj" id="doc-WM-Hbc"/>
+                        <outlet property="itemDescription" destination="Pls-0m-yDR" id="0iz-IE-hXz"/>
+                        <outlet property="itemTitle" destination="WGq-gP-6Tz" id="doX-4w-b62"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dIk-Xe-ts1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
