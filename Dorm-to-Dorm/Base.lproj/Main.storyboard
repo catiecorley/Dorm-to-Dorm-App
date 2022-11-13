@@ -101,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dIk-Xe-ts1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2810.144927536232" y="1255.5803571428571"/>
+            <point key="canvasLocation" x="2731" y="1255"/>
         </scene>
         <!--Buy-->
         <scene sceneID="0I9-zn-gpi">
@@ -206,32 +206,56 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SIc-d0-pYF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2760" y="378.19905213270141"/>
+            <point key="canvasLocation" x="2731" y="375"/>
         </scene>
         <!--Home Page-->
         <scene sceneID="BNm-JK-jR0">
             <objects>
-                <viewController title="Home Page" id="jw0-bo-uA2" customClass="ViewController" customModule="Dorm_to_Dorm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home Page" id="jw0-bo-uA2" customClass="HomeViewController" customModule="Dorm_to_Dorm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4MG-pQ-cwW">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Home Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtM-gN-pKe">
-                                <rect key="frame" x="145" y="91" width="125" height="61"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtM-gN-pKe">
+                                <rect key="frame" x="118" y="25" width="154" height="37"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OLL-pJ-nFO">
+                                <rect key="frame" x="0.0" y="87" width="390" height="604"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="homeCell" id="j8q-lM-U7Q">
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="j8q-lM-U7Q" id="Ap5-8o-BHi">
+                                            <rect key="frame" x="0.0" y="0.0" width="390" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="s1T-8o-yZe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="s1T-8o-yZe" firstAttribute="trailing" secondItem="OLL-pJ-nFO" secondAttribute="trailing" id="0fT-tb-cKL"/>
+                            <constraint firstItem="OLL-pJ-nFO" firstAttribute="top" secondItem="gtM-gN-pKe" secondAttribute="bottom" constant="25" id="3i7-M0-ZIH"/>
+                            <constraint firstItem="OLL-pJ-nFO" firstAttribute="leading" secondItem="s1T-8o-yZe" secondAttribute="leading" id="93G-fS-TYK"/>
+                            <constraint firstItem="gtM-gN-pKe" firstAttribute="centerX" secondItem="4MG-pQ-cwW" secondAttribute="centerX" id="APA-bs-fTB"/>
+                            <constraint firstItem="gtM-gN-pKe" firstAttribute="top" secondItem="s1T-8o-yZe" secondAttribute="top" constant="25" id="Hw6-RF-C0B"/>
+                            <constraint firstItem="s1T-8o-yZe" firstAttribute="bottom" secondItem="OLL-pJ-nFO" secondAttribute="bottom" constant="50" id="OGL-bx-AFk"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="mMv-2W-YXE"/>
+                    <connections>
+                        <outlet property="tableView" destination="OLL-pJ-nFO" id="ds4-58-q7m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Yh-HN-YEO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1939.1304347826087" y="375"/>
+            <point key="canvasLocation" x="1849" y="375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="1mm-LW-SAf">
@@ -249,7 +273,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tb1-T2-lom" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1900.0000000000002" y="1255.5803571428571"/>
+            <point key="canvasLocation" x="1848" y="1255"/>
         </scene>
         <!--Sell-->
         <scene sceneID="rGX-hd-c6b">
