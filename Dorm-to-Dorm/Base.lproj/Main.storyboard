@@ -33,7 +33,7 @@
         <!--Specific Buy View Controller-->
         <scene sceneID="NfV-WW-w00">
             <objects>
-                <viewController storyboardIdentifier="detailed" id="z3N-Mf-fql" customClass="SpecificBuyViewController" customModule="Dorm_to_Dorm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailed" useStoryboardIdentifierAsRestorationIdentifier="YES" id="z3N-Mf-fql" customClass="SpecificBuyViewController" customModule="Dorm_to_Dorm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kEs-cR-w31">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
