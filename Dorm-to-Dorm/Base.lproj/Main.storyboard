@@ -389,7 +389,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Sell" image="dollarsign.square.fill" catalog="system" id="vNR-Md-P8q"/>
                     <connections>
-                        <outlet property="description" destination="I1w-Qv-jWi" id="vgA-1a-RVk"/>
                         <outlet property="location" destination="5ow-2n-Ims" id="t6U-tN-Fdv"/>
                         <outlet property="sellDate" destination="5I3-qt-Q4Z" id="m8M-aO-0Yw"/>
                     </connections>
