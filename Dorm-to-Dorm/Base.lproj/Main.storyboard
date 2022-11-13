@@ -12,7 +12,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="d1Z-Lt-SRN">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="PAO-fM-NHh" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabVC" automaticallyAdjustsScrollViewInsets="NO" id="PAO-fM-NHh" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="TCV-Bd-G3b"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="c7g-NU-0Gf">
@@ -108,7 +108,7 @@
             <objects>
                 <viewController title="Buy" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kty-X9-cz1" customClass="BuyViewController" customModule="Dorm_to_Dorm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8z0-NT-rlZ">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JJG-Rj-fGu">
@@ -211,19 +211,19 @@
         <!--Home Page-->
         <scene sceneID="BNm-JK-jR0">
             <objects>
-                <viewController title="Home Page" id="jw0-bo-uA2" customClass="HomeViewController" customModule="Dorm_to_Dorm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="homeVC" title="Home Page" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jw0-bo-uA2" customClass="HomeViewController" customModule="Dorm_to_Dorm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4MG-pQ-cwW">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home Page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtM-gN-pKe">
-                                <rect key="frame" x="118" y="25" width="154" height="37"/>
+                                <rect key="frame" x="118" y="69" width="154" height="37"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OLL-pJ-nFO">
-                                <rect key="frame" x="0.0" y="87" width="390" height="604"/>
+                                <rect key="frame" x="0.0" y="131" width="390" height="580"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="homeCell" id="j8q-lM-U7Q">
@@ -280,7 +280,7 @@
             <objects>
                 <viewController title="Sell" id="50J-t4-6Ft" customClass="SellViewController" customModule="Dorm_to_Dorm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SFS-ie-zd8">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sell" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tS3-hh-UO1">
@@ -491,7 +491,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khE-1T-ZnX">
                                         <rect key="frame" x="32" y="201" width="305" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -544,7 +544,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Login"/>
                                 <connections>
-                                    <segue destination="PAO-fM-NHh" kind="show" id="DFU-vy-ThR"/>
+                                    <action selector="loginButtonClicked:" destination="4Io-Qq-DKC" eventType="touchUpInside" id="LMu-Ra-SD2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -567,6 +567,10 @@
                             <constraint firstItem="i81-dB-LjL" firstAttribute="top" secondItem="mis-Kc-95c" secondAttribute="bottom" id="xOT-L2-aPI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="passwordField" destination="khE-1T-ZnX" id="NT7-oG-Nxg"/>
+                        <outlet property="usernameField" destination="6oR-kE-aOv" id="4bh-D9-hFb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pCY-Lk-aQ8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
