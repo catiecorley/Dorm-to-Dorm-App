@@ -12,6 +12,7 @@ class LogInViewController: UIViewController {
 
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var warningLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,7 @@ class LogInViewController: UIViewController {
         if usernameField.text != nil && passwordField.text != nil {
             Auth.auth().signIn(withEmail: usernameField.text!, password: passwordField.text!) {authResult, error in
                 guard let user = authResult?.user, error == nil else {
-                    print(error?.localizedDescription)
+                    self.warningLabel.text = error?.localizedDescription
                     return
                 }
                 
