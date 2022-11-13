@@ -46,9 +46,9 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
 
         let detailedViewController = storyboard!.instantiateViewController(withIdentifier: "detailed") as! SpecificBuyViewController
         
-        let itemName = String(saleItems[indexPath.row] )
+        let name = String(saleItems[indexPath.row] )
      
-        //detailedViewController.itemTitle.text = itemName
+        detailedViewController.itemName = name
 
         navigationController?.pushViewController(detailedViewController, animated: true)
     }
