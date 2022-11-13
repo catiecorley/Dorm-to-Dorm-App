@@ -12,6 +12,7 @@
 		4C34A54F291C12FA00ED848F /* SellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34A54E291C12FA00ED848F /* SellViewController.swift */; };
 		4C34A551291C149300ED848F /* SpecificBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34A550291C149300ED848F /* SpecificBuyViewController.swift */; };
 		4C34A553291C17AD00ED848F /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34A552291C17AC00ED848F /* LogInViewController.swift */; };
+		4C34A55529216B7900ED848F /* BuyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C34A55429216B7900ED848F /* BuyCollectionViewCell.swift */; };
 		4C3BF9232920600D00E50791 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C3BF9222920600D00E50791 /* GoogleService-Info.plist */; };
 		4CAD04F7291C0DD0009A3BE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD04F6291C0DD0009A3BE7 /* AppDelegate.swift */; };
 		4CAD04F9291C0DD0009A3BE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAD04F8291C0DD0009A3BE7 /* SceneDelegate.swift */; };
@@ -27,6 +28,7 @@
 		4C34A54E291C12FA00ED848F /* SellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellViewController.swift; sourceTree = "<group>"; };
 		4C34A550291C149300ED848F /* SpecificBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificBuyViewController.swift; sourceTree = "<group>"; };
 		4C34A552291C17AC00ED848F /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		4C34A55429216B7900ED848F /* BuyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyCollectionViewCell.swift; sourceTree = "<group>"; };
 		4C3BF9222920600D00E50791 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4CAD04F3291C0DD0009A3BE7 /* Dorm-to-Dorm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dorm-to-Dorm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CAD04F6291C0DD0009A3BE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				4CAD04F6291C0DD0009A3BE7 /* AppDelegate.swift */,
 				4CAD04F8291C0DD0009A3BE7 /* SceneDelegate.swift */,
 				4CAD04FA291C0DD0009A3BE7 /* ViewController.swift */,
+				4C34A55429216B7900ED848F /* BuyCollectionViewCell.swift */,
 				4C34A548291C128D00ED848F /* HomeViewController.swift */,
 				4C34A552291C17AC00ED848F /* LogInViewController.swift */,
 				4C34A550291C149300ED848F /* SpecificBuyViewController.swift */,
@@ -161,6 +164,7 @@
 				4C34A54B291C129D00ED848F /* BuyViewController.swift in Sources */,
 				4C34A54F291C12FA00ED848F /* SellViewController.swift in Sources */,
 				4CAD04F7291C0DD0009A3BE7 /* AppDelegate.swift in Sources */,
+				4C34A55529216B7900ED848F /* BuyCollectionViewCell.swift in Sources */,
 				4C34A553291C17AD00ED848F /* LogInViewController.swift in Sources */,
 				4CAD04F9291C0DD0009A3BE7 /* SceneDelegate.swift in Sources */,
 				4C34A551291C149300ED848F /* SpecificBuyViewController.swift in Sources */,

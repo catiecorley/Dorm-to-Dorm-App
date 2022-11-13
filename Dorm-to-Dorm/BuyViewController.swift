@@ -7,15 +7,89 @@
 
 import UIKit
 
-class BuyViewController: UIViewController {
+class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+    
+    
+    //use for fetching from database
+    struct Item: Decodable {
+        let id: Int!
+        let name: String!
+        let description: String!
+        let price: Double!
+        
+    }
+    
+    var saleItems:[String] = ["test1", "test2", "test3", "test1", "test2", "test3", "test1", "test2", "test3"]
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BuyCollectionViewCell
+    
+        if saleItems.count == 0 { // or images is empty
+            cell.itemImage?.image = nil
+            cell.itemLabel?.text = nil
+        } else{
+           // cell.itemImage?.image =
 
+            cell.itemLabel?.text = saleItems[indexPath.row]
+        }
+        cell.backgroundColor = .gray
+
+        return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return saleItems.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let detailedViewController = storyboard!.instantiateViewController(withIdentifier: "detailed") as! SpecificBuyViewController
+        
+        let itemName = String(saleItems[indexPath.row])
+    
+        detailedViewController.itemTitle.text = itemName
+        //detailedViewController.itemImage =
+        
+       
+        
+        navigationController?.pushViewController(detailedViewController, animated: true)
+    }
+
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var priceSelector: UISegmentedControl!
+    
+    @IBOutlet weak var roomSelector: UISegmentedControl!
+    @IBOutlet weak var colorSelector: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let cellSize = collectionView.bounds.width / 3 - 10
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+        layout.itemSize = CGSize(width: cellSize, height: cellSize + cellSize / 2)
+        layout.minimumInteritemSpacing = 3
+        layout.minimumLineSpacing = 10
+   
+        collectionView.collectionViewLayout = layout
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        
+        fetchData()
+        cacheImages()
         // Do any additional setup after loading the view.
     }
     
-
+    func fetchData(){
+        //fetch data from database and put into item objects
+    }
+    
+    func cacheImages(){
+        //cache images from fetched data
+    }
     /*
     // MARK: - Navigation
 
