@@ -9,6 +9,12 @@ import UIKit
 
 class SellViewController: UIViewController {
 
+    
+    @IBOutlet weak var sellDate: UITextField!
+    @IBOutlet weak var location: UITextField!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
