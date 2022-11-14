@@ -16,7 +16,7 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("loaded!")
         // Do any additional setup after loading the view.
     }
     
@@ -33,16 +33,19 @@ class LogInViewController: UIViewController {
 //                self.navigationController?.setViewControllers([homeVC], animated: false)
 //            }
 //        }
-        
+        print("button pressed")
+
         if usernameField.text != nil && passwordField.text != nil {
             Auth.auth().signIn(withEmail: usernameField.text!, password: passwordField.text!) {authResult, error in
                 guard let user = authResult?.user, error == nil else {
                     self.warningLabel.text = error?.localizedDescription
                     return
                 }
-                
+                print("success")
                 print("Email: " + user.email!)
                 // navigate to home screen
+                let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "tabVC") //as! HomeViewController
+                self.navigationController?.pushViewController(homeVC!, animated: true)
                 }
             }
     }
