@@ -9,6 +9,8 @@ import UIKit
 
 class SpecificBuyViewController: UIViewController {
 
+    var itemName:String?
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var itemTitle: UILabel!
     @IBOutlet weak var itemDescription: UILabel!
@@ -18,7 +20,7 @@ class SpecificBuyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        itemTitle.text = itemName ?? ""
         // Do any additional setup after loading the view.
     }
     

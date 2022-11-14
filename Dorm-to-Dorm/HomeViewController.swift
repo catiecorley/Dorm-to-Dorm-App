@@ -7,12 +7,32 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "homeCell", for: indexPath)
+        cell.largeContentTitle = "Hello"
+        return cell
+        
+    }
+    
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        tableView.delegate = self
+        
     }
     
 
