@@ -6,18 +6,20 @@
 //
 
 import UIKit
+import FirebaseAuth
+
+//use for fetching from database
+struct Item: Decodable {
+    let uid: String!
+    let name: String!
+    let description: String!
+    let price: Double!
+    
+}
 
 class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
     
-    
-    //use for fetching from database
-    struct Item: Decodable {
-        let id: Int!
-        let name: String!
-        let description: String!
-        let price: Double!
-        
-    }
+    var user: FirebaseAuth.User!
     
     var saleItems:[String] = ["test1", "test2", "test3", "test1", "test2", "test3", "test1", "test2", "test3"]
     

@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var user: FirebaseAuth.User!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2

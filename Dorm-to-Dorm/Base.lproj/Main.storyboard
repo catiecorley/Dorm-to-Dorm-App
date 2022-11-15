@@ -106,7 +106,7 @@
         <!--Buy-->
         <scene sceneID="0I9-zn-gpi">
             <objects>
-                <viewController title="Buy" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kty-X9-cz1" customClass="BuyViewController" customModule="Dorm_to_Dorm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="buyVC" title="Buy" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kty-X9-cz1" customClass="BuyViewController" customModule="Dorm_to_Dorm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8z0-NT-rlZ">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -260,7 +260,7 @@
         <!--Sell-->
         <scene sceneID="rGX-hd-c6b">
             <objects>
-                <viewController title="Sell" id="50J-t4-6Ft" customClass="SellViewController" customModule="Dorm_to_Dorm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sellVC" title="Sell" id="50J-t4-6Ft" customClass="SellViewController" customModule="Dorm_to_Dorm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SFS-ie-zd8">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -365,12 +365,22 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fid-2l-Lur">
+                                <rect key="frame" x="169" y="709" width="53" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Post"/>
+                                <connections>
+                                    <action selector="postButtonClicked:" destination="50J-t4-6Ft" eventType="touchUpInside" id="nSE-WZ-eSK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aNg-0g-0sJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sell" image="dollarsign.square.fill" catalog="system" id="vNR-Md-P8q"/>
                     <connections>
+                        <outlet property="itemDescription" destination="I1w-Qv-jWi" id="05K-kM-nsL"/>
                         <outlet property="location" destination="5ow-2n-Ims" id="t6U-tN-Fdv"/>
                         <outlet property="sellDate" destination="5I3-qt-Q4Z" id="m8M-aO-0Yw"/>
                     </connections>
