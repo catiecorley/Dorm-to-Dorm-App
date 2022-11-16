@@ -46,6 +46,8 @@ class LogInViewController: UIViewController {
                 self.setUser(user: user)
                 let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tabVC") //as! HomeViewController
                 self.navigationController?.pushViewController(tabVC!, animated: true)
+                self.navigationController?.setNavigationBarHidden(true, animated: false)
+                self.warningLabel.text = ""
                 }
             }
     }
