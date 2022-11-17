@@ -9,7 +9,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
-class SellViewController: UIViewController {
+class SellViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var user: FirebaseAuth.User!
     let db = Firestore.firestore()
@@ -17,6 +17,7 @@ class SellViewController: UIViewController {
     @IBOutlet weak var sellDate: UITextField!
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var itemDescription: UITextField!
+    @IBOutlet weak var firstImage: UIImageView!
     
     
     
@@ -26,6 +27,22 @@ class SellViewController: UIViewController {
     }
     
 
+    @IBAction func uploadImageClicked(_ sender: Any) {
+        var image = UIImagePickerController()
+        image.delegate = self
+        image.sourceType = UIImagePickerController.SourceType.photoLibrary
+        image.allowsEditing = false
+        self.present(image, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                firstImage.contentMode = .scaleAspectFit
+                firstImage.image = pickedImage
+        }
+        dismiss(animated: true)
+    }
+    
     @IBAction func postButtonClicked(_ sender: Any) {
 //        if itemDescription.text != nil {
 //            let docId = db

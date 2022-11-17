@@ -310,18 +310,6 @@
                                 <rect key="frame" x="275" y="94" width="84" height="112"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zMt-c1-X3F">
-                                <rect key="frame" x="16" y="214" width="84" height="112"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQN-RG-7i6">
-                                <rect key="frame" x="153" y="214" width="84" height="112"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s1M-eg-Izs">
-                                <rect key="frame" x="275" y="214" width="84" height="112"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Latest Possible Sell Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MW-iK-OBb">
                                 <rect key="frame" x="16" y="414" width="197" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -374,12 +362,22 @@
                                     <action selector="postButtonClicked:" destination="50J-t4-6Ft" eventType="touchUpInside" id="nSE-WZ-eSK"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="snq-Ls-JD9">
+                                <rect key="frame" x="139" y="253" width="114" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Upload Image"/>
+                                <connections>
+                                    <action selector="uploadImageClicked:" destination="50J-t4-6Ft" eventType="touchUpInside" id="Mv5-fF-ELE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aNg-0g-0sJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Sell" image="dollarsign.square.fill" catalog="system" id="vNR-Md-P8q"/>
                     <connections>
+                        <outlet property="firstImage" destination="FcY-2e-S4o" id="IlF-bv-pVq"/>
                         <outlet property="itemDescription" destination="I1w-Qv-jWi" id="05K-kM-nsL"/>
                         <outlet property="location" destination="5ow-2n-Ims" id="t6U-tN-Fdv"/>
                         <outlet property="sellDate" destination="5I3-qt-Q4Z" id="m8M-aO-0Yw"/>
