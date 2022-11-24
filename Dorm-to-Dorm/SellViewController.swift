@@ -14,7 +14,9 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var user: FirebaseAuth.User!
     let db = Firestore.firestore()
     
-    @IBOutlet weak var sellDate: UITextField!
+    @IBOutlet weak var deliver: UISwitch!
+    @IBOutlet weak var sellDate: UIDatePicker!
+    //    @IBOutlet weak var sellDate: UITextField!
     @IBOutlet weak var location: UITextField!
     @IBOutlet weak var itemDescription: UITextField!
     @IBOutlet weak var firstImage: UIImageView!
@@ -44,6 +46,58 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     @IBAction func postButtonClicked(_ sender: Any) {
+        let userID = UserDefaults.standard.string(forKey: "userID")
+        
+        if itemDescription.text != "" && location.text != ""{
+        let itemName = itemDescription.text ?? ""
+            let sellDate = sellDate.date
+            let location = location.text
+            let deliver = deliver.isOn
+            
+        let itemData: [String: Any] = [
+            "ownerID": userID ?? "unknown",
+            "itemName": itemName,
+            "sellDate": sellDate,
+            "location": location ?? "unknown",
+            "deliver": deliver,
+//            "itemPrice": "1234 Restaurant St",
+            "dateAdded": Timestamp(date: Date())
+        ]
+            
+        let db = Firestore.firestore()
+        
+        let docRef = db.collection("items").document(itemName)
+            docRef.setData(itemData) { error in
+                           if let error = error {
+                               print("Error writing document: \(error)")
+                           } else {
+                               let successAdded = UIAlertController(title: "Item Added", message: "Your item has been published to be sold.", preferredStyle: UIAlertController.Style.alert)
+
+                               successAdded.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                                 print("Handle Ok logic here")
+                                 }))
+
+                               self.present(successAdded, animated: true, completion: nil)
+                               
+                               
+                               print("Document successfully written!")
+                           }
+                       }
+        } else{
+            let failureAdd = UIAlertController(title: "Form Incomplete", message: "Please fill all sections of sell form to publish item.", preferredStyle: UIAlertController.Style.alert)
+
+            failureAdd.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+              print("Handle Ok logic here")
+              }))
+
+            self.present(failureAdd, animated: true, completion: nil)
+            
+            
+        }
+        
+    }
+        
+        
 //        if itemDescription.text != nil {
 //            let docId = db
 //            let item = Item(uid: user.uid, name: "Couch", description: "3 person brown couch", price: 20)
@@ -60,7 +114,7 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 //                }
 //            }
 //        }
-    }
+//    }
     /*
     // MARK: - Navigation
 

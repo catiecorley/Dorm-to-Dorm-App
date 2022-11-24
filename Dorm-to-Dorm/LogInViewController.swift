@@ -53,6 +53,7 @@ class LogInViewController: UIViewController {
     }
     
     func setUser(user: FirebaseAuth.User) {
+        UserDefaults.standard.set(user.uid, forKey: "userID")
         let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "homeVC") as! HomeViewController
         let sellVC = self.storyboard?.instantiateViewController(withIdentifier: "sellVC") as! SellViewController
         let buyVC = self.storyboard?.instantiateViewController(withIdentifier: "buyVC") as! BuyViewController
