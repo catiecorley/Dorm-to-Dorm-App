@@ -26,6 +26,7 @@
 		9A600A1F2921A4A500D3117E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9A600A1E2921A4A500D3117E /* FirebaseFirestoreSwift */; };
 		9A600A212921A4A500D3117E /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 9A600A202921A4A500D3117E /* FirebaseInAppMessaging-Beta */; };
 		9A600A232921A4A500D3117E /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 9A600A222921A4A500D3117E /* FirebaseInAppMessagingSwift-Beta */; };
+		B5F30EF929351F1500B7197A /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F30EF829351F1500B7197A /* CreateAccountViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		4CAD04FF291C0DD2009A3BE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4CAD0502291C0DD2009A3BE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4CAD0504291C0DD2009A3BE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5F30EF829351F1500B7197A /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				4C34A550291C149300ED848F /* SpecificBuyViewController.swift */,
 				4C34A54A291C129D00ED848F /* BuyViewController.swift */,
 				4C34A54E291C12FA00ED848F /* SellViewController.swift */,
+				B5F30EF829351F1500B7197A /* CreateAccountViewController.swift */,
 				4CAD04FC291C0DD0009A3BE7 /* Main.storyboard */,
 				4C3BF9222920600D00E50791 /* GoogleService-Info.plist */,
 				4CAD04FF291C0DD2009A3BE7 /* Assets.xcassets */,
@@ -183,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F30EF929351F1500B7197A /* CreateAccountViewController.swift in Sources */,
 				4CAD04FB291C0DD0009A3BE7 /* ViewController.swift in Sources */,
 				4C34A54B291C129D00ED848F /* BuyViewController.swift in Sources */,
 				4C34A54F291C12FA00ED848F /* SellViewController.swift in Sources */,
