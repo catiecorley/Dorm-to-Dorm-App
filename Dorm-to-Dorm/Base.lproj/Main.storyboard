@@ -472,6 +472,7 @@
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
+                                            <constraint firstItem="JET-C3-zV1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Euj-lq-h6f" secondAttribute="leading" constant="20" symbolic="YES" id="Hbg-eB-YSi"/>
                                             <constraint firstAttribute="trailing" secondItem="zSH-OG-Hsj" secondAttribute="trailing" constant="-37" id="UQN-fx-3qa"/>
                                             <constraint firstItem="JET-C3-zV1" firstAttribute="top" secondItem="Euj-lq-h6f" secondAttribute="top" constant="22" id="dCj-zY-hRW"/>
                                             <constraint firstItem="zSH-OG-Hsj" firstAttribute="top" secondItem="Euj-lq-h6f" secondAttribute="top" constant="17" id="f5b-40-lqa"/>
@@ -480,13 +481,13 @@
                                             <constraint firstAttribute="bottom" secondItem="zSH-OG-Hsj" secondAttribute="bottom" constant="-20.333333333333343" id="zwZ-Hn-Bk3"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3f-0U-6Z8">
-                                        <rect key="frame" x="33" y="235" width="304" height="0.0"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3f-0U-6Z8">
+                                        <rect key="frame" x="33" y="235" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khE-1T-ZnX">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="khE-1T-ZnX">
                                         <rect key="frame" x="33" y="196" width="287" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -497,10 +498,12 @@
                                     <constraint firstItem="sG1-S9-ZNE" firstAttribute="leading" secondItem="i81-dB-LjL" secondAttribute="leading" constant="20" symbolic="YES" id="1ZQ-yE-8qV"/>
                                     <constraint firstItem="E3f-0U-6Z8" firstAttribute="leading" secondItem="i81-dB-LjL" secondAttribute="leading" constant="33" id="EpH-wn-w1p"/>
                                     <constraint firstAttribute="bottom" secondItem="Euj-lq-h6f" secondAttribute="bottom" constant="218.5" id="HSr-oO-IOT"/>
-                                    <constraint firstAttribute="trailing" secondItem="E3f-0U-6Z8" secondAttribute="trailing" constant="53" id="Mek-P8-A6L"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="E3f-0U-6Z8" secondAttribute="trailing" symbolic="YES" id="Mek-P8-A6L"/>
+                                    <constraint firstAttribute="bottom" secondItem="E3f-0U-6Z8" secondAttribute="bottom" constant="133" id="QEh-Fe-Rht"/>
                                     <constraint firstItem="Euj-lq-h6f" firstAttribute="leading" secondItem="sG1-S9-ZNE" secondAttribute="leading" id="QF3-QC-OlD"/>
+                                    <constraint firstItem="E3f-0U-6Z8" firstAttribute="top" secondItem="khE-1T-ZnX" secondAttribute="bottom" constant="5" id="VLJ-Wu-fjY"/>
                                     <constraint firstItem="6oR-kE-aOv" firstAttribute="top" secondItem="sG1-S9-ZNE" secondAttribute="bottom" constant="0.5" id="WNj-FW-89B"/>
-                                    <constraint firstAttribute="trailing" secondItem="khE-1T-ZnX" secondAttribute="trailing" constant="53" id="Z1t-bE-k9v"/>
+                                    <constraint firstAttribute="trailing" secondItem="khE-1T-ZnX" secondAttribute="trailing" constant="70" id="Z1t-bE-k9v"/>
                                     <constraint firstItem="Euj-lq-h6f" firstAttribute="top" secondItem="6oR-kE-aOv" secondAttribute="bottom" symbolic="YES" id="Zt0-54-iFS"/>
                                     <constraint firstAttribute="trailing" secondItem="6oR-kE-aOv" secondAttribute="trailing" constant="67" id="bjR-Aa-bGB"/>
                                     <constraint firstItem="sG1-S9-ZNE" firstAttribute="top" secondItem="i81-dB-LjL" secondAttribute="top" constant="20" id="hP8-cF-Uis"/>
@@ -509,7 +512,7 @@
                                     <constraint firstAttribute="trailing" secondItem="sG1-S9-ZNE" secondAttribute="trailing" constant="224" id="s9R-Vy-ggH"/>
                                     <constraint firstItem="khE-1T-ZnX" firstAttribute="top" secondItem="JET-C3-zV1" secondAttribute="bottom" constant="25.666666666666686" id="sCk-aO-iYs"/>
                                     <constraint firstAttribute="trailing" secondItem="Euj-lq-h6f" secondAttribute="trailing" constant="266" id="zI0-86-3AZ"/>
-                                    <constraint firstItem="khE-1T-ZnX" firstAttribute="leading" secondItem="i81-dB-LjL" secondAttribute="leading" constant="32" id="zP5-RD-4Uc"/>
+                                    <constraint firstItem="khE-1T-ZnX" firstAttribute="leading" secondItem="i81-dB-LjL" secondAttribute="leading" constant="33" id="zP5-RD-4Uc"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NXd-AB-Tja" userLabel="Google View">
