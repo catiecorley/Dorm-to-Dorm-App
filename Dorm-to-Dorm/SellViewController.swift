@@ -8,11 +8,13 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 class SellViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var user: FirebaseAuth.User!
     let db = Firestore.firestore()
+    let storage = Storage.storage()
     
     @IBOutlet weak var deliver: UISwitch!
     @IBOutlet weak var sellDate: UIDatePicker!
@@ -38,15 +40,38 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                firstImage.contentMode = .scaleAspectFit
-                firstImage.image = pickedImage
+        guard let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+                return
         }
+        firstImage.contentMode = .scaleAspectFit
+        firstImage.image = pickedImage
         dismiss(animated: true)
     }
     
     @IBAction func postButtonClicked(_ sender: Any) {
         let userID = UserDefaults.standard.string(forKey: "userID")
+        let imageTitle = (userID ?? "unkown") + "test"
+        let riversRef = storage.reference().child("images/" + imageTitle)
+
+        guard let imageData = firstImage.image?.pngData() else {
+            return
+        }
+        // Upload the file to the path "images/rivers.jpg"
+        let uploadTask = riversRef.putData(imageData, metadata: nil) { (metadata, error) in
+          guard let metadata = metadata else {
+            // Uh-oh, an error occurred!
+            return
+          }
+          // Metadata contains file metadata such as size, content-type.
+          let size = metadata.size
+          // You can also access to download URL after upload.
+          riversRef.downloadURL { (url, error) in
+            guard let downloadURL = url else {
+              // Uh-oh, an error occurred!
+              return
+            }
+          }
+        }
         
         if itemDescription.text != "" && location.text != ""{
         let itemName = itemDescription.text ?? ""
@@ -96,25 +121,48 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         
     }
-        
-        
-//        if itemDescription.text != nil {
-//            let docId = db
-//            let item = Item(uid: user.uid, name: "Couch", description: "3 person brown couch", price: 20)
-//            db.collection("cities").addDocument(data: [
-//                "uid": user.uid,
-//                "name": "Couch",
-//                "description": itemDescription.text!,
-//                "price": 20
-//            ]) { err in
-//                if let err = err {
-//                    print("Error writing document: \(err)")
-//                } else {
-//                    print("Document successfully written!")
+    
+//        func saveData(){
+//            let userID = UserDefaults.standard.string(forKey: "userID")
+//            let imageTitle = (userID ?? "unkown") + "test"
+//
+//                self.uploadImage(image: firstImage.image!){ url in
+//                    self.saveImage(userName: imageTitle, profileImageURL: url!){ success in
+//                        if (success != nil){
+//                            self.dismiss(animated: true, completion: nil)
+//                        }
+//
+//                    }
 //                }
 //            }
+//
+//
+//        func uploadImage(image: UIImage, completion: @escaping ((_ url: URL?) -> ())) {
+//
+//            let storageRef = Storage.storage().reference().child("myimage.png")
+//                  let imgData = self.firstImage.image?.pngData()
+//                  let metaData = StorageMetadata()
+//                  metaData.contentType = "image/png"
+//                  storageRef.putData(imgData!, metadata: metaData) { (metadata, error) in
+//                      if error == nil{
+//                          storageRef.downloadURL(completion: { (url, error) in
+//                              completion(url)
+//                          })
+//                      }else{
+//                          print("error in save image")
+//                          completion(nil)
+//                      }
+//                  }
+//
 //        }
-//    }
+//
+//        func saveImage(userName:String, profileImageURL: URL , completion: @escaping ((_ url: URL?) -> ())){
+//            let userID = UserDefaults.standard.string(forKey: "userID")
+//            let imageTitle = (userID ?? "unkown") + "test"
+//
+//               let dict = ["name": "Yogesh", "text": imageTitle, "profileImageURL": profileImageURL.absoluteString] as [String : Any]
+//               self.storage.child("chat").childByAutoId().setValue(dict)
+//        }
     /*
     // MARK: - Navigation
 
