@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class CreateAccountViewController: UIViewController {
 
+   
+   
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var password: UITextField!
+    @IBOutlet weak var warning: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,6 +22,17 @@ class CreateAccountViewController: UIViewController {
     }
     
 
+    @IBAction func createButton(_ sender: UIButton) {
+        
+        if username.text != nil && password.text != nil {
+                  Auth.auth().createUser(withEmail: username.text!, password: password.text!) { authResult, error in
+                     guard let user = authResult?.user, error == nil else {
+                         self.warning.text = error?.localizedDescription
+                     return
+    }
+                      self.setUser(user: user)
+                      let tabVC = self.storyboard?.instantiateViewController(withIdentifier: "tabVC") //as! HomeViewController
+                      self.navigationController?.pushViewController(tabVC!, animated: true)
     /*
     // MARK: - Navigation
 
@@ -26,4 +43,12 @@ class CreateAccountViewController: UIViewController {
     }
     */
 
+}
+            
+        }}
+    
+    
+    func setUser(user: FirebaseAuth.User) {
+        UserDefaults.standard.set(user.uid, forKey: "userID")
+    }
 }
