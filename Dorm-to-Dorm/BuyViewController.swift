@@ -7,17 +7,26 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
 
 //use for fetching from database
-struct Item: Decodable {
-    let uid: String!
-    let name: String!
-    let description: String!
-    let price: Double!
-    
-}
+//example of fetching for one id
+// Firestore.firestore().collection("Posts").whereField("postedTo", arrayContains: userId).order(by: "date", descending: true).addSnapshotListener { (snapshot, error) in
 
 class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
+  
+    struct Item {
+        let dateAdded: String?
+        let deliver: Bool?
+        let imageID: String?
+        let itemName: String?
+        let location: String?
+        let ownerID: String?
+        let sellDate: String?
+    }
+
+    var theItems: [Item] = []
     
     var user: FirebaseAuth.User!
     
@@ -32,7 +41,7 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
         } else{
            // cell.itemImage?.image =
 
-            cell.itemLabel?.text = saleItems[indexPath.row]
+            cell.itemLabel?.text = theItems[indexPath.row].itemName
         }
         cell.backgroundColor = .gray
 
@@ -41,14 +50,14 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return saleItems.count
+        return theItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         let detailedViewController = storyboard!.instantiateViewController(withIdentifier: "detailed") as! SpecificBuyViewController
         
-        let name = String(saleItems[indexPath.row] )
+        let name = theItems[indexPath.row].itemName
      
         detailedViewController.itemName = name
 
@@ -78,17 +87,44 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
         
         
         fetchData()
-        cacheImages()
+//        cacheImages()
         // Do any additional setup after loading the view.
     }
     
-    func fetchData(){
-        //fetch data from database and put into item objects
-    }
+ 
     
+    func fetchData() {
+        let db = Firestore.firestore()
+
+        db.collection("items").getDocuments() { (snapshot, error) in
+                        if let error = error {
+                                print("Error getting documents: \(error)")
+                        } else {
+                            if let snapshot = snapshot, !snapshot.isEmpty {
+                                           print("Posted data got")
+                                           
+                                           self.theItems = snapshot.documents.map { document in
+                                               Item(dateAdded: document.get("dateAdded") as? String,
+                                                    deliver:  document.get("deliver") as? Bool,
+                                                    imageID: document.get("imageID") as? String,
+                                                    itemName: document.get("itemName") as? String,
+                                                    location: document.get("location") as? String,
+                                                    ownerID: document.get("ownerID") as? String,
+                                                    sellDate: document.get("sellDate") as? String)
+                                                        
+                                           }
+                        }
+                            
+        }
+            
+    }
+    }
     func cacheImages(){
         //cache images from fetched data
     }
+}
+    
+   
     /*
     // MARK: - Navigation
 
@@ -99,4 +135,4 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     */
 
-}
+
