@@ -57,9 +57,9 @@ class LogInViewController: UIViewController {
         let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "homeVC") as! HomeViewController
         let sellVC = self.storyboard?.instantiateViewController(withIdentifier: "sellVC") as! SellViewController
         let buyVC = self.storyboard?.instantiateViewController(withIdentifier: "buyVC") as! BuyViewController
-        homeVC.user = user
-        sellVC.user = user
-        buyVC.user = user
+//        homeVC.user = user
+//        sellVC.user = user
+//        buyVC.user = user
     }
     /*
     // MARK: - Navigation

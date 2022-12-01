@@ -50,7 +50,8 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func postButtonClicked(_ sender: Any) {
         let userID = UserDefaults.standard.string(forKey: "userID")
-        let imageTitle = (userID ?? "unkown") + "test"
+        let timestamp = NSDate().timeIntervalSince1970
+        let imageTitle = (userID ?? "unkown") + String(timestamp)
         let riversRef = storage.reference().child("images/" + imageTitle)
 
         guard let imageData = firstImage.image?.pngData() else {
@@ -85,13 +86,13 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             "sellDate": sellDate,
             "location": location ?? "unknown",
             "deliver": deliver,
-//            "itemPrice": "1234 Restaurant St",
-            "dateAdded": Timestamp(date: Date())
+            "imageID" : imageTitle,
+//            "dateAdded": Timestamp(date: Date())
         ]
             
         let db = Firestore.firestore()
-        
-        let docRef = db.collection("items").document(itemName)
+        let docRef = db.collection("items").document((userID ?? "unkown") + itemName)
+            
             docRef.setData(itemData) { error in
                            if let error = error {
                                print("Error writing document: \(error)")
@@ -121,48 +122,6 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         
     }
-    
-//        func saveData(){
-//            let userID = UserDefaults.standard.string(forKey: "userID")
-//            let imageTitle = (userID ?? "unkown") + "test"
-//
-//                self.uploadImage(image: firstImage.image!){ url in
-//                    self.saveImage(userName: imageTitle, profileImageURL: url!){ success in
-//                        if (success != nil){
-//                            self.dismiss(animated: true, completion: nil)
-//                        }
-//
-//                    }
-//                }
-//            }
-//
-//
-//        func uploadImage(image: UIImage, completion: @escaping ((_ url: URL?) -> ())) {
-//
-//            let storageRef = Storage.storage().reference().child("myimage.png")
-//                  let imgData = self.firstImage.image?.pngData()
-//                  let metaData = StorageMetadata()
-//                  metaData.contentType = "image/png"
-//                  storageRef.putData(imgData!, metadata: metaData) { (metadata, error) in
-//                      if error == nil{
-//                          storageRef.downloadURL(completion: { (url, error) in
-//                              completion(url)
-//                          })
-//                      }else{
-//                          print("error in save image")
-//                          completion(nil)
-//                      }
-//                  }
-//
-//        }
-//
-//        func saveImage(userName:String, profileImageURL: URL , completion: @escaping ((_ url: URL?) -> ())){
-//            let userID = UserDefaults.standard.string(forKey: "userID")
-//            let imageTitle = (userID ?? "unkown") + "test"
-//
-//               let dict = ["name": "Yogesh", "text": imageTitle, "profileImageURL": profileImageURL.absoluteString] as [String : Any]
-//               self.storage.child("chat").childByAutoId().setValue(dict)
-//        }
     /*
     // MARK: - Navigation
 
