@@ -9,18 +9,21 @@ import UIKit
 
 class SpecificBuyViewController: UIViewController {
 
-    var itemName:String?
+    var item: Item!
+    var image: UIImage!
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var itemTitle: UILabel!
-    @IBOutlet weak var itemDescription: UILabel!
-    @IBOutlet weak var distance: UILabel!
+    @IBOutlet weak var location: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var contactInfo: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemTitle.text = itemName ?? ""
+        imageView.image = image
+        itemTitle.text = item.itemName
+        location.text = item.location
+        date.text = item.sellDate
         // Do any additional setup after loading the view.
     }
     

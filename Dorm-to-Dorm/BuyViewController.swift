@@ -30,42 +30,21 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     
     var newItems:[Item] = [Item]()
+    var imageCache : [UIImage] = []
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! BuyCollectionViewCell
-    
-//        if saleItems.count == 0 { // or images is empty
-//            cell.itemImage?.image = nil
-//            cell.itemLabel?.text = nil
-//        } else{
-//           // cell.itemImage?.image =
-//
-//            cell.itemLabel?.text = saleItems[indexPath.row]
-//        }
         
         if newItems.count == 0 {
             cell.itemImage?.image = nil
             cell.itemLabel?.text = nil
         } else {
-            cell.itemImage?.image = nil
-            let currItem = newItems[indexPath.section * 3 + indexPath.row]
-            // Create a reference to the file you want to download
-            let imageRef = storage.reference().child("images/" + currItem.imageID)
-
-            // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
-            imageRef.getData(maxSize: 100 * 1024 * 1024) { data, error in
-              if let error = error {
-                // Uh-oh, an error occurred!
-                  print(error)
-              } else {
-                // Data for "images/island.jpg" is returned
-                let image = UIImage(data: data!)
-                  print(image)
-                  cell.itemImage?.image = image
-              }
+            if (indexPath.section * 3 + indexPath.row) > imageCache.count - 1 {
+                cell.itemImage?.image = nil
+            } else {
+                cell.itemImage.image = imageCache[indexPath.section * 3 + indexPath.row]
             }
-                
-            
+            let currItem = newItems[indexPath.section * 3 + indexPath.row]
             cell.itemLabel?.text = currItem.itemName
         }
 //        cell.backgroundColor = .gray
@@ -80,13 +59,15 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        let detailedViewController = storyboard!.instantiateViewController(withIdentifier: "detailed") as! SpecificBuyViewController
+        let specificBuyViewController = storyboard!.instantiateViewController(withIdentifier: "detailed") as! SpecificBuyViewController
         
-        let name = String(saleItems[indexPath.row] )
-     
-        detailedViewController.itemName = name
+        let currItem = newItems[indexPath.section * 3 + indexPath.row]
+        let currImage = imageCache[indexPath.section * 3 + indexPath.row]
+        
+        specificBuyViewController.item = currItem
+        specificBuyViewController.image = currImage
 
-        navigationController?.pushViewController(detailedViewController, animated: true)
+        navigationController?.pushViewController(specificBuyViewController, animated: true)
     }
 
     
@@ -126,6 +107,23 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
                     let current = document.data()
                     let item = Item(ownerID: current["ownerID"] as! String, itemName: current["itemName"] as! String, sellDate: current["itemName"] as! String, location: current["location"] as! String, deliver: current["deliver"] as! Bool, imageID: current["imageID"] as! String)
                     self.newItems.append(item)
+                    
+                    let imageRef = self.storage.reference().child("images/" + (current["imageID"] as! String))
+
+                    // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+                    imageRef.getData(maxSize: 100 * 1024 * 1024) { data, error in
+                      if let error = error {
+                        // Uh-oh, an error occurred!
+                          print(error)
+                      } else {
+                        // Data for "images/island.jpg" is returned
+                          if let image = UIImage(data: data!) {
+                              self.imageCache.append(image)
+                              self.collectionView.reloadData()
+                          }
+                      }
+                    }
+                    
                     self.collectionView.reloadData()
                 }
             }
