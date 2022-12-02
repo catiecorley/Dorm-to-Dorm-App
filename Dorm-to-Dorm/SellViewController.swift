@@ -12,7 +12,7 @@ import FirebaseStorage
 
 class SellViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    var user: FirebaseAuth.User!
+//    var user: FirebaseAuth.User!
     let db = Firestore.firestore()
     let storage = Storage.storage()
     
@@ -50,8 +50,8 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func postButtonClicked(_ sender: Any) {
         let userID = UserDefaults.standard.string(forKey: "userID")
-        let timestamp = NSDate().timeIntervalSince1970
-        let imageTitle = (userID ?? "unkown") + String(timestamp)
+        let timestamp = String(NSDate().timeIntervalSince1970)
+        let imageTitle = (userID ?? "unkown") + timestamp
         let riversRef = storage.reference().child("images/" + imageTitle)
 
         guard let imageData = firstImage.image?.pngData() else {
@@ -87,11 +87,11 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             "location": location ?? "unknown",
             "deliver": deliver,
             "imageID" : imageTitle,
-//            "dateAdded": Timestamp(date: Date())
+            "dateAdded": timestamp
         ]
             
         let db = Firestore.firestore()
-        let docRef = db.collection("items").document((userID ?? "unkown") + itemName)
+        let docRef = db.collection("items").document(imageTitle)
             
             docRef.setData(itemData) { error in
                            if let error = error {

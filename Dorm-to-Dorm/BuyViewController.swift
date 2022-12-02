@@ -18,6 +18,7 @@ struct Item: Decodable {
     let location: String!
     let deliver: Bool!
     let imageID: String!
+    let dateAdded: String!
 }
 
 class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource{
@@ -105,7 +106,7 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
             } else {
                 for document in querySnapshot!.documents {
                     let current = document.data()
-                    let item = Item(ownerID: current["ownerID"] as! String, itemName: current["itemName"] as! String, sellDate: current["itemName"] as! String, location: current["location"] as! String, deliver: current["deliver"] as! Bool, imageID: current["imageID"] as! String)
+                    let item = Item(ownerID: current["ownerID"] as! String, itemName: current["itemName"] as! String, sellDate: current["itemName"] as! String, location: current["location"] as! String, deliver: current["deliver"] as! Bool, imageID: current["imageID"] as! String, dateAdded: current["dateAdded"] as! String)
                     self.newItems.append(item)
                     
                     let imageRef = self.storage.reference().child("images/" + (current["imageID"] as! String))

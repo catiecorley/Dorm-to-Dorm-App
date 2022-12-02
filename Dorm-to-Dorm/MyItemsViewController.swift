@@ -1,0 +1,92 @@
+//
+//  MyItemsViewController.swift
+//  Dorm-to-Dorm
+//
+//  Created by Jacob Dulai on 12/2/22.
+//
+
+import Foundation
+import UIKit
+import FirebaseFirestore
+import FirebaseStorage
+
+class MyItemsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    let db = Firestore.firestore()
+    let storage = Storage.storage()
+    
+    var myItems:[Item] = [Item]()
+    @IBOutlet weak var tableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        title = "My Items"
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "myItem")
+        tableView.dataSource = self
+        tableView.delegate = self
+        fetchData()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return myItems.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "myItem", for: indexPath)
+        let currItemName = myItems[indexPath.row].itemName
+        cell.textLabel?.text = currItemName
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            removeItem(indexPath: indexPath)
+        }
+    }
+    
+    func removeItem(indexPath: IndexPath) {
+        let currItem = myItems[indexPath.row]
+        let userID = UserDefaults.standard.string(forKey: "userID")
+        let itemRef = storage.reference().child("images/" + (userID ?? "unknown") + currItem.dateAdded)
+        itemRef.delete { error in
+          if let error = error {
+            // Uh-oh, an error occurred!
+              print(error.localizedDescription)
+          } else {
+            // File deleted successfully
+              self.db.collection("items").document((userID ?? "unknown") + currItem.dateAdded).delete() { err in
+                  if let err = err {
+                      print("Error removing document: \(err)")
+                  } else {
+                      self.fetchData()
+                  }
+              }
+          }
+        }
+    }
+
+    func fetchData() {
+        myItems.removeAll()
+        let userID = UserDefaults.standard.string(forKey: "userID")
+        db.collection("items").whereField("ownerID", isEqualTo: userID ?? "")
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let current = document.data()
+                        let item = Item(ownerID: current["ownerID"] as! String, itemName: current["itemName"] as! String, sellDate: current["itemName"] as! String, location: current["location"] as! String, deliver: current["deliver"] as! Bool, imageID: current["imageID"] as! String, dateAdded: current["dateAdded"] as! String)
+                        self.myItems.append(item)
+                        print(self.myItems)
+                        self.tableView.reloadData()
+                    }
+                }
+        }
+    }
+
+}
