@@ -18,7 +18,6 @@ class SpecificBuyViewController: UIViewController {
     var deliverabletext: String!
     
     @IBOutlet weak var deliverable: UILabel!
-    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var itemTitle: UILabel!
     @IBOutlet weak var location: UILabel!

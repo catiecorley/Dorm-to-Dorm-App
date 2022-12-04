@@ -87,15 +87,17 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
         
         let itemViewController = storyboard!.instantiateViewController(withIdentifier: "detailed") as! SpecificBuyViewController
       
-        let itemName = String(myItems[indexPath.row].itemName ?? "not found")
-        print("name is \(itemName)")
-        itemViewController.thisname = itemName
-        let location = String(myItems[indexPath.row].location ?? "not found")
-        itemViewController.thislocation = location
+        let name = String(myItems[indexPath.row].itemName ?? "not found")
+        print("name is \(name)")
+        itemViewController.thisname = String(myItems[indexPath.row].itemName)
+        let loc = String(myItems[indexPath.row].location ?? "not found")
+        itemViewController.thislocation = String(myItems[indexPath.row].location)
+        print("loacation is \(loc)")
         let date = String(myItems[indexPath.row].sellDate ?? "not found")
-        itemViewController.thislocation = date
+        print("date is \(date)")
+        itemViewController.thislocation = String(myItems[indexPath.row].sellDate)
         //try and avoid errors
-        let deliver = Bool(myItems[indexPath.row].deliver ?? true)
+        let deliver = Bool(myItems[indexPath.row].deliver)
         if(deliver){
             itemViewController.deliverabletext = "This item can be delivered"
 
@@ -103,6 +105,7 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
             itemViewController.deliverabletext = "Must be picked up."
 
         }
+        print("deliver is \(deliver)")
 
         
         
