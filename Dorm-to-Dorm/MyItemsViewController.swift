@@ -50,6 +50,7 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func removeItem(indexPath: IndexPath) {
+        print(indexPath.row)
         let currItem = myItems[indexPath.row]
         let userID = UserDefaults.standard.string(forKey: "userID")
         let itemRef = storage.reference().child("images/" + (userID ?? "unknown") + currItem.dateAdded)
@@ -70,6 +71,63 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        var item: Item!
+//        var image: UIImage!
+//
+//        @IBOutlet weak var imageView: UIImageView!
+//        @IBOutlet weak var itemTitle: UILabel!
+//        @IBOutlet weak var location: UILabel!
+//        @IBOutlet weak var date: UILabel!
+//        @IBOutlet weak var contactInfo: UILabel!
+        
+        print(indexPath)
+      
+        print(myItems[indexPath.row])
+        
+        let itemViewController = storyboard!.instantiateViewController(withIdentifier: "detailed") as! SpecificBuyViewController
+      
+        let itemName = String(myItems[indexPath.row].itemName ?? "not found")
+        print("name is \(itemName)")
+        itemViewController.thisname = itemName
+        let location = String(myItems[indexPath.row].location ?? "not found")
+        itemViewController.thislocation = location
+        let date = String(myItems[indexPath.row].sellDate ?? "not found")
+        itemViewController.thislocation = date
+        //try and avoid errors
+        let deliver = Bool(myItems[indexPath.row].deliver ?? true)
+        if(deliver){
+            itemViewController.deliverabletext = "This item can be delivered"
+
+        } else{
+            itemViewController.deliverabletext = "Must be picked up."
+
+        }
+
+        
+        
+        let imageid = String(myItems[indexPath.row].imageID ?? "")
+        
+        let imageRef = self.storage.reference().child("images/" + (imageid))
+
+        // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
+        imageRef.getData(maxSize: 100 * 1024 * 1024) { data, error in
+          if let error = error {
+            // Uh-oh, an error occurred!
+              print(error)
+          } else {
+            // Data for "images/island.jpg" is returned
+              if let image = UIImage(data: data!) {
+                  itemViewController.imageView?.image = image
+                 // self.collectionView.reloadData()
+              }
+          }
+        }
+    
+        navigationController?.pushViewController(itemViewController, animated: true)
+    }
+    
+    
     func fetchData() {
         myItems.removeAll()
         let userID = UserDefaults.standard.string(forKey: "userID")
@@ -80,7 +138,7 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
                 } else {
                     for document in querySnapshot!.documents {
                         let current = document.data()
-                        let item = Item(ownerID: current["ownerID"] as! String, itemName: current["itemName"] as! String, sellDate: current["itemName"] as! String, location: current["location"] as! String, deliver: current["deliver"] as! Bool, imageID: current["imageID"] as! String, dateAdded: current["dateAdded"] as! String)
+                        let item = Item(ownerID: (current["ownerID"] as! String), itemName: current["itemName"] as! String, sellDate: current["sellDate"] as! String, location: current["location"] as! String, deliver: current["deliver"] as? Bool, imageID: current["imageID"] as! String, dateAdded: current["dateAdded"] as! String)
                         self.myItems.append(item)
                         print(self.myItems)
                         self.tableView.reloadData()

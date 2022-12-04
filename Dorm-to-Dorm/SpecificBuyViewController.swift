@@ -12,6 +12,13 @@ class SpecificBuyViewController: UIViewController {
     var item: Item!
     var image: UIImage!
     
+    var thisname: String!
+    var thislocation: String!
+    var thisdate: String!
+    var deliverabletext: String!
+    
+    @IBOutlet weak var deliverable: UILabel!
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var itemTitle: UILabel!
     @IBOutlet weak var location: UILabel!
@@ -20,10 +27,12 @@ class SpecificBuyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.image = image
-        itemTitle.text = item.itemName
-        location.text = item.location
-        date.text = item.sellDate
+       
+        imageView?.image = image
+        itemTitle?.text = thisname
+        location?.text = thislocation
+        date?.text = thisdate
+        deliverable?.text = deliverabletext
         // Do any additional setup after loading the view.
     }
     

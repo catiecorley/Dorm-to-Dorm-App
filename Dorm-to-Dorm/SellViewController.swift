@@ -49,6 +49,7 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     @IBAction func postButtonClicked(_ sender: Any) {
+        print("post button clicked")
         let userID = UserDefaults.standard.string(forKey: "userID")
         let timestamp = String(NSDate().timeIntervalSince1970)
         let imageTitle = (userID ?? "unkown") + timestamp
@@ -75,8 +76,12 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         
         if itemDescription.text != "" && location.text != ""{
+            print("button pressed")
         let itemName = itemDescription.text ?? ""
-            let sellDate = sellDate.date
+            let timeFormatter = DateFormatter()
+            timeFormatter.timeStyle = DateFormatter.Style.short
+
+            let sellDate = timeFormatter.string(from: sellDate.date)
             let location = location.text
             let deliver = deliver.isOn
             
@@ -107,9 +112,13 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                                
                                
                                print("Document successfully written!")
+                               self.itemDescription.text = ""
+                               self.location.text = ""
                            }
+        
                        }
         } else{
+            print("empty fields")
             let failureAdd = UIAlertController(title: "Form Incomplete", message: "Please fill all sections of sell form to publish item.", preferredStyle: UIAlertController.Style.alert)
 
             failureAdd.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
