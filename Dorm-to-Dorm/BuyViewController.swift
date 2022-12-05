@@ -113,26 +113,24 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let search = (searchBar.text)?.lowercased()
-        print("search")
-        print(search)
+     
         if search == "" {
             fetchData()
         } else{
             imageCache.removeAll()
             newItems.removeAll()
             //fetch data from database and put into item objects
-            db.collection("items").whereField("itemName", isEqualTo: search).getDocuments() { (querySnapshot, err) in
+            db.collection("items").whereField("itemName", isEqualTo: search ?? "").getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
-                    print(querySnapshot?.count)
+             
                     for document in querySnapshot!.documents {
                         let current = document.data()
                         let item = Item(ownerID: current["ownerID"] as! String, itemName: current["itemName"] as! String, sellDate: current["itemName"] as! String, location: current["location"] as! String, deliver: current["deliver"] as! Bool, imageID: current["imageID"] as! String, dateAdded: current["dateAdded"] as! String,
                                         contact: current["contact"] as! String)
                         self.newItems.append(item)
-                        print("newItems:")
-                        print(self.newItems)
+                       
                         let imageRef = self.storage.reference().child("images/" + (current["imageID"] as! String))
 
                         // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
@@ -145,7 +143,6 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
                               if let image = UIImage(data: data!) {
                                   self.imageCache.append(image)
                                   self.collectionView.reloadData()
-                                  print(image)
                               }
                           }
                         }
@@ -170,8 +167,7 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
         let date = String((newItems[indexPath.row].sellDate) ?? "not found")
 
         itemViewController.thisdate = String(date)
-        print("the date:")
-        print(date)
+       
         let deliver = Bool(newItems[indexPath.row].deliver)
         itemViewController.deliverabletext = "Must be picked up."
         
@@ -185,7 +181,6 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
             itemViewController.deliverabletext = "Must be picked up."
 
         }
-        print("deliver is \(deliver)")
 
         
         
@@ -237,7 +232,6 @@ class BuyViewController: UIViewController, UICollectionViewDelegate, UICollectio
                           if let image = UIImage(data: data!) {
                               self.imageCache.append(image)
                               self.collectionView.reloadData()
-                              print(image)
                           }
                       }
                     }

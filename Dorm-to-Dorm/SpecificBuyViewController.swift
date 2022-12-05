@@ -32,17 +32,9 @@ class SpecificBuyViewController: UIViewController {
         imageView?.image = image
         
         itemTitle?.text = thisname
-        print("name")
-        print(thisname!)
         location?.text = thislocation
-        print("location")
-        print(thislocation ?? "nowhere")
         date?.text = thisdate
-        print("date")
-        print(thisdate ?? "no date")
         deliverable?.text = deliverabletext
-        print("deliver")
-        print(deliverabletext!)
         contactInfo.text = contact ?? "No Contact Info..."
         // Do any additional setup after loading the view.
     }

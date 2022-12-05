@@ -34,7 +34,7 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
 
     @IBAction func uploadImageClicked(_ sender: Any) {
-        var image = UIImagePickerController()
+        let image = UIImagePickerController()
         image.delegate = self
         image.sourceType = UIImagePickerController.SourceType.photoLibrary
         image.allowsEditing = false
@@ -51,14 +51,14 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     @IBAction func postButtonClicked(_ sender: Any) {
-        print("post button clicked")
+
         let userID = UserDefaults.standard.string(forKey: "userID")
         let timestamp = String(NSDate().timeIntervalSince1970)
         let imageTitle = (userID ?? "unkown") + timestamp
         let riversRef = storage.reference().child("images/" + imageTitle)
 
         guard let imageData = firstImage.image?.pngData() else {
-            print("error 1")
+
             let noPhoto = UIAlertController(title: "Form Incomplete", message: "Please upload a photo of your item.", preferredStyle: UIAlertController.Style.alert)
 
             noPhoto.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
@@ -73,7 +73,7 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let uploadTask = riversRef.putData(imageData, metadata: nil) { (metadata, error) in
           guard let metadata = metadata else {
             // Uh-oh, an error occurred!
-              print("error 2")
+       
             return
           }
           // Metadata contains file metadata such as size, content-type.
@@ -82,14 +82,14 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
           riversRef.downloadURL { (url, error) in
             guard let downloadURL = url else {
               // Uh-oh, an error occurred!
-                print("error 3")
+      
               return
             }
           }
         }
         
         if itemDescription.text != "" && location.text != "" && contact.text != ""{
-            print("button pressed")
+    
        
 
             
@@ -135,7 +135,7 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
                        }
         } else{
-            print("empty fields")
+            
             let failureAdd = UIAlertController(title: "Form Incomplete", message: "Please fill all sections of sell form to publish item.", preferredStyle: UIAlertController.Style.alert)
 
             failureAdd.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in

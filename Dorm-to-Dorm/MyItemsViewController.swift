@@ -53,7 +53,7 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func removeItem(indexPath: IndexPath) {
-        print(indexPath.row)
+
         let currItem = myItems[indexPath.row]
         let userID = UserDefaults.standard.string(forKey: "userID")
         let itemRef = storage.reference().child("images/" + (userID ?? "unknown") + currItem.dateAdded)
@@ -79,13 +79,13 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
         let itemViewController = storyboard!.instantiateViewController(withIdentifier: "detailed") as! SpecificBuyViewController
       
         let name = String(myItems[indexPath.row].itemName ?? "not found")
-        print("name is \(name)")
+
         itemViewController.thisname = name
         let loc = String(myItems[indexPath.row].location ?? "not found")
         itemViewController.thislocation = loc
-        print("loacation is \(loc)")
+        
         let date = String((myItems[indexPath.row].sellDate) ?? "not found")
-        print("date is \(date)")
+
         itemViewController.thisdate = String(date)
         //try and avoid errors
         let deliver = Bool(myItems[indexPath.row].deliver)
@@ -100,7 +100,6 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
             itemViewController.deliverabletext = "Must be picked up."
 
         }
-        print("deliver is \(deliver)")
 
         
         
@@ -139,7 +138,7 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
                         let current = document.data()
                         let item = Item(ownerID: (current["ownerID"] as! String), itemName: current["itemName"] as! String, sellDate: current["sellDate"] as! String, location: current["location"] as! String, deliver: current["deliver"] as? Bool, imageID: current["imageID"] as! String, dateAdded: current["dateAdded"] as! String, contact: current["contact"] as! String)
                         self.myItems.append(item)
-                        print(self.myItems)
+                     
                         self.tableView.reloadData()
                     }
                 }
