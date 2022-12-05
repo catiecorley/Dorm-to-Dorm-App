@@ -17,7 +17,10 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var myItems:[Item] = [Item]()
     @IBOutlet weak var tableView: UITableView!
-    
+    override func viewWillAppear(_ animated: Bool) {
+        myItems.removeAll()
+        fetchData()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -25,7 +28,7 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "myItem")
         tableView.dataSource = self
         tableView.delegate = self
-        fetchData()
+        myItems.removeAll()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,33 +75,25 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        var item: Item!
-//        var image: UIImage!
-//
-//        @IBOutlet weak var imageView: UIImageView!
-//        @IBOutlet weak var itemTitle: UILabel!
-//        @IBOutlet weak var location: UILabel!
-//        @IBOutlet weak var date: UILabel!
-//        @IBOutlet weak var contactInfo: UILabel!
-        
-        print(indexPath)
-      
-        print(myItems[indexPath.row])
-        
+
         let itemViewController = storyboard!.instantiateViewController(withIdentifier: "detailed") as! SpecificBuyViewController
       
         let name = String(myItems[indexPath.row].itemName ?? "not found")
         print("name is \(name)")
-        itemViewController.thisname = String(myItems[indexPath.row].itemName)
+        itemViewController.thisname = name
         let loc = String(myItems[indexPath.row].location ?? "not found")
-        itemViewController.thislocation = String(myItems[indexPath.row].location)
+        itemViewController.thislocation = loc
         print("loacation is \(loc)")
-        let date = String(myItems[indexPath.row].sellDate ?? "not found")
+        let date = String((myItems[indexPath.row].sellDate) ?? "not found")
         print("date is \(date)")
-        itemViewController.thislocation = String(myItems[indexPath.row].sellDate)
+        itemViewController.thisdate = String(date)
         //try and avoid errors
         let deliver = Bool(myItems[indexPath.row].deliver)
-        if(deliver){
+        itemViewController.deliverabletext = "Must be picked up."
+        
+        let contactInfo = String(myItems[indexPath.row].contact)
+        itemViewController.contact = String(contactInfo)
+        if deliver == true{
             itemViewController.deliverabletext = "This item can be delivered"
 
         } else{
@@ -133,6 +128,7 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func fetchData() {
         myItems.removeAll()
+        
         let userID = UserDefaults.standard.string(forKey: "userID")
         db.collection("items").whereField("ownerID", isEqualTo: userID ?? "")
             .getDocuments() { (querySnapshot, err) in
@@ -141,7 +137,7 @@ class MyItemsViewController: UIViewController, UITableViewDataSource, UITableVie
                 } else {
                     for document in querySnapshot!.documents {
                         let current = document.data()
-                        let item = Item(ownerID: (current["ownerID"] as! String), itemName: current["itemName"] as! String, sellDate: current["sellDate"] as! String, location: current["location"] as! String, deliver: current["deliver"] as? Bool, imageID: current["imageID"] as! String, dateAdded: current["dateAdded"] as! String)
+                        let item = Item(ownerID: (current["ownerID"] as! String), itemName: current["itemName"] as! String, sellDate: current["sellDate"] as! String, location: current["location"] as! String, deliver: current["deliver"] as? Bool, imageID: current["imageID"] as! String, dateAdded: current["dateAdded"] as! String, contact: current["contact"] as! String)
                         self.myItems.append(item)
                         print(self.myItems)
                         self.tableView.reloadData()

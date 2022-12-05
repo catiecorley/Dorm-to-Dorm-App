@@ -16,6 +16,7 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     let db = Firestore.firestore()
     let storage = Storage.storage()
     
+    @IBOutlet weak var contact: UITextField!
     @IBOutlet weak var deliver: UISwitch!
     @IBOutlet weak var sellDate: UIDatePicker!
     //    @IBOutlet weak var sellDate: UITextField!
@@ -27,6 +28,7 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
     
@@ -56,12 +58,22 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let riversRef = storage.reference().child("images/" + imageTitle)
 
         guard let imageData = firstImage.image?.pngData() else {
+            print("error 1")
+            let noPhoto = UIAlertController(title: "Form Incomplete", message: "Please upload a photo of your item.", preferredStyle: UIAlertController.Style.alert)
+
+            noPhoto.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+              print("Handle Ok logic here")
+              }))
+
+            self.present(noPhoto, animated: true, completion: nil)
+            
             return
         }
         // Upload the file to the path "images/rivers.jpg"
         let uploadTask = riversRef.putData(imageData, metadata: nil) { (metadata, error) in
           guard let metadata = metadata else {
             // Uh-oh, an error occurred!
+              print("error 2")
             return
           }
           // Metadata contains file metadata such as size, content-type.
@@ -70,21 +82,24 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
           riversRef.downloadURL { (url, error) in
             guard let downloadURL = url else {
               // Uh-oh, an error occurred!
+                print("error 3")
               return
             }
           }
         }
         
-        if itemDescription.text != "" && location.text != ""{
+        if itemDescription.text != "" && location.text != "" && contact.text != ""{
             print("button pressed")
-        let itemName = itemDescription.text ?? ""
-            let timeFormatter = DateFormatter()
-            timeFormatter.timeStyle = DateFormatter.Style.short
+       
 
-            let sellDate = timeFormatter.string(from: sellDate.date)
+            
+            let itemName = (itemDescription.text ?? "").trimmingCharacters(in: .whitespaces).lowercased()
+            let dateFormater = DateFormatter()
+            dateFormater.dateStyle = DateFormatter.Style.full
+            let sellDate = dateFormater.string(from: sellDate.date)
             let location = location.text
             let deliver = deliver.isOn
-            
+            let contactInfo = contact.text
         let itemData: [String: Any] = [
             "ownerID": userID ?? "unknown",
             "itemName": itemName,
@@ -92,7 +107,8 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             "location": location ?? "unknown",
             "deliver": deliver,
             "imageID" : imageTitle,
-            "dateAdded": timestamp
+            "dateAdded": timestamp,
+            "contact": contactInfo ?? "unknown"
         ]
             
         let db = Firestore.firestore()
@@ -114,6 +130,7 @@ class SellViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                                print("Document successfully written!")
                                self.itemDescription.text = ""
                                self.location.text = ""
+                               self.contact.text = ""
                            }
         
                        }

@@ -16,22 +16,34 @@ class SpecificBuyViewController: UIViewController {
     var thislocation: String!
     var thisdate: String!
     var deliverabletext: String!
+    var contact: String!
     
+    @IBOutlet weak var date: UILabel!
     @IBOutlet weak var deliverable: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var itemTitle: UILabel!
     @IBOutlet weak var location: UILabel!
-    @IBOutlet weak var date: UILabel!
+ 
     @IBOutlet weak var contactInfo: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+
         imageView?.image = image
+        
         itemTitle?.text = thisname
+        print("name")
+        print(thisname!)
         location?.text = thislocation
+        print("location")
+        print(thislocation ?? "nowhere")
         date?.text = thisdate
+        print("date")
+        print(thisdate ?? "no date")
         deliverable?.text = deliverabletext
+        print("deliver")
+        print(deliverabletext!)
+        contactInfo.text = contact ?? "No Contact Info..."
         // Do any additional setup after loading the view.
     }
     
